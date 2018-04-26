@@ -1,5 +1,7 @@
 DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS folders;
+DROP TABLE IF EXISTS tags;
+DROP TABLE IF EXISTS 
 
   CREATE TABLE folders (
     id serial PRIMARY KEY,
@@ -12,6 +14,13 @@ INSERT INTO folders(name) VALUES ('Archive'),
   ('Drafts'),
   ('Personal'),
   ('Work');
+
+  CREATE TABLE notes_tags (
+  note_id INTEGER NOT NULL REFERENCES notes ON DELETE CASCADE,
+  tag_id INTEGER NOT NULL REFERENCES tags ON DELETE CASCADE
+);
+
+
 
 
 CREATE TABLE notes(
