@@ -95,4 +95,4 @@ INSERT INTO notes (title, content, folder_id) VALUES
 );
 
   INSERT INTO notes_tags (note_id, tag_id) VALUES
-  (1001, 2), (1001, 3), (1002, 1);
+  (1001, 2), (1001, 3), (1002, 1);  
