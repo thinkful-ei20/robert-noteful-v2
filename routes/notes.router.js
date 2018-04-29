@@ -74,7 +74,7 @@ router.get('/notes/:id', (req, res, next) => {
 // Put update an item
 router.put('/notes/:id', (req, res, next) => {
   const noteId = req.params.id;
-  const { title, content, folderId, tags } = req.body;
+  const { title, content, folderId, tags = [] } = req.body;
 
   /***** Never trust users. Validate input *****/
   if (!title) {
@@ -116,7 +116,7 @@ router.put('/notes/:id', (req, res, next) => {
         // Hydrate the results
         const hydrated = hydrateNotes(result)[0];
         // Respond with a location header, a 201 status and a note object
-        res.location(`${req.originalUrl}/${hydrated.id}`).status(201).json(hydrated);
+        res.json(hydrated);
       } else {
         next();
       }
@@ -126,7 +126,7 @@ router.put('/notes/:id', (req, res, next) => {
 
 // Post (insert) an item
 router.post('/notes', (req, res, next) => {
-  const { title, content, folderId, tags} = req.body;
+  const { title, content, folderId, tags = []} = req.body;
 
   const newItem = { 
     title, 

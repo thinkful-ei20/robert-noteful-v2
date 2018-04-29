@@ -156,10 +156,8 @@ const noteful = (function () {
       };
 
       if (store.currentNote.id) {
-        console.log(noteObj);
         api.update(`/api/notes/${noteObj.id}`, noteObj)
           .then(updateResponse => {
-            console.log('response:', updateResponse);
             store.currentNote = updateResponse;
             return api.search('/api/notes', store.currentQuery);
           })
